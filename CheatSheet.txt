@@ -1,0 +1,121 @@
+MANGODB COMMANDS FOR DATABASES
+view all db
+>showdbs
+
+create a new or switch  database
+>use dbNAME
+
+delete db
+>db.dropDatabase()
+
+
+MANGODB COMMANDS FOR COLLECTION
+>Show Collections
+>show collections
+
+
+CREATE A COLLECTION eg('mycomments')
+>db.createCollection('mycomments')
+
+DELETE COLLECTION
+>db.myComments.drop()
+
+MANGODB COMMANDS FOR ROWS
+SHOW ALL ROWS IN COLLECTION
+>db.mycomments.find()
+
+Insert 1 ROWS
+>db.mycomments.insert({
+    'name':'Kashaf',
+    'lang':'Javascript',
+    'member_Since':5
+
+})
+
+
+Insert MANY ROWS
+>db.mycomments.insert({
+    'name':'Kashaf',
+    'lang':'Javascript',
+    'member_Since':5
+
+},
+db.mycomments.insert({
+    'name':'Ayesha',
+    'lang':'css',
+    'member_Since':5
+
+}
+,db.mycomments.insert({
+    'name':'Alina',
+    'lang':'html',
+    'member_Since':5
+
+})
+
+
+
+SHOW ALL ROWS IN COLLECTION in(prettiefied)
+>db.mycomments.find().pretty()
+
+
+SEARCH IN A MANGODB
+>db.mycomments.find({lang:'JS'})
+
+
+LIMIT THE NO OF ROWS IN OUTPUT
+>db.comments.find().limit(9)
+
+
+COUNT THE NUMBER OF ROWS IN OUTPUT
+>db.comments.find().count()
+
+
+OUTPUT IN ASCENDING FORM
+>db.comments.find().sort({member_since:1})
+
+
+OUTPUT IN DESSCENDING FORM
+>db.comments.find().sort({member_since:-1})
+
+
+WILL STOP SEARCHING ROW MATCHING THE OBJECT
+>db.comments.findOne({name:'kashaf'})
+
+UPDATE A ROW
+>db.mycomments.update({name:'Kashaf'},
+
+{name:'newName',
+lang:'C++'
+}
+)
+
+
+UPSERT:means do u wanna make new new object if your object doesnot MATCHING
+
+>db.mycomments.update({name:'Kashaf'},
+
+{name:'newName',
+lang:'C++'
+},{upsert:true}
+)
+
+
+
+MANGODB INCREMENT OPERATOR
+>db.mycomments.update({name:'Kashaf'},
+{$inc:{
+    member_Since:2
+}}
+)
+
+
+
+MANGODB RENAME OPERATOR(rename the fields)
+>db.mycomments.update({name:'Kashaf'},
+{$rename:{
+    member_Since:'rename'
+}}
+)
+
+if we want rename for all the object so just give empty parameter in update function
